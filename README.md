@@ -4,7 +4,7 @@ An open-source, AI-powered web application for managing school finances, includi
 
 ## Project Overview
 
-The School Finance Management System is designed to help educational institutions efficiently manage their financial operations. The system provides a comprehensive set of features to track student fees, staff salaries, expenses, and generate financial reports.
+SchoolFinAI is designed to help educational institutions efficiently manage their financial operations. The system provides a comprehensive set of features to track student fees, staff salaries, expenses, and generate financial reports with AI-powered insights.
 
 ## Features
 
@@ -157,8 +157,8 @@ schoolfinai/
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/school-finance-system.git
-cd school-finance-system
+git clone https://github.com/santoshray02/schoolfinai.git
+cd schoolfinai
 ```
 
 2. Install dependencies
@@ -210,7 +210,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+5. Open a Pull Request at [https://github.com/santoshray02/schoolfinai/pulls](https://github.com/santoshray02/schoolfinai/pulls)
 
 ## License
 
