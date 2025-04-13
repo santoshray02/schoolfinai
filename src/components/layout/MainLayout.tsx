@@ -1,6 +1,8 @@
 import React, { ReactNode, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { schoolConfig } from '@/lib/config';
 
 interface SidebarItem {
   name: string;
@@ -102,7 +104,23 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           </div>
           <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
             <div className="flex-shrink-0 flex items-center px-4">
-              <h1 className="text-xl font-bold text-gray-900">School Finance</h1>
+              {schoolConfig.logoUrl && (
+                <div className="mr-2">
+                  <Image 
+                    src={schoolConfig.logoUrl} 
+                    alt={schoolConfig.name} 
+                    width={40} 
+                    height={40} 
+                    className="rounded-md"
+                  />
+                </div>
+              )}
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">{schoolConfig.name}</h1>
+                {schoolConfig.tagline && (
+                  <p className="text-xs text-gray-500">{schoolConfig.tagline}</p>
+                )}
+              </div>
             </div>
             <nav className="mt-5 px-2 space-y-1">
               {sidebarItems.map((item) => (
@@ -146,7 +164,23 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
           <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <h1 className="text-xl font-bold text-gray-900">School Finance</h1>
+              {schoolConfig.logoUrl && (
+                <div className="mr-2">
+                  <Image 
+                    src={schoolConfig.logoUrl} 
+                    alt={schoolConfig.name} 
+                    width={40} 
+                    height={40} 
+                    className="rounded-md"
+                  />
+                </div>
+              )}
+              <div>
+                <h1 className="text-xl font-bold text-gray-900">{schoolConfig.name}</h1>
+                {schoolConfig.tagline && (
+                  <p className="text-xs text-gray-500">{schoolConfig.tagline}</p>
+                )}
+              </div>
             </div>
             <nav className="mt-5 flex-1 px-2 bg-white space-y-1">
               {sidebarItems.map((item) => (
