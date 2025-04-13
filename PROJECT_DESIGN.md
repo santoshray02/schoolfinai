@@ -186,6 +186,21 @@ The API follows RESTful principles with the following structure:
 
 ## Deployment Strategy
 
+### Management Script
+A comprehensive `manage.sh` script is provided for easy application management with the following capabilities:
+- Setup automation (dependencies, environment, database)
+- Development and production server management
+- Process monitoring and status checking
+- Centralized logging
+- Graceful shutdown handling
+
+### Recommended Approach
+- Vercel deployment for production
+- Docker containers for self-hosting
+- CI/CD pipeline with GitHub Actions
+- Self-hosted deployment using the management script for configuration
+- Hot reloading for rapid development
+
 ### Development Environment
 - Local development with Docker for database
 - Environment variables for configuration

@@ -203,6 +203,19 @@ schoolfinai/
 git clone https://github.com/santoshray02/schoolfinai.git
 cd schoolfinai
 
+# Make the management script executable
+chmod +x manage.sh
+
+# Run the setup script (installs dependencies, creates .env.local, sets up database)
+./manage.sh setup
+
+# Start the development server
+./manage.sh start dev
+```
+
+You can also use the traditional npm commands if you prefer:
+
+```bash
 # Install dependencies
 npm install
 
@@ -238,25 +251,48 @@ Open [http://localhost:3000](http://localhost:3000) to see the application
 
 ## 🌐 Deployment
 
-<table>
-  <tr>
-    <td width="50%">
-      <h3>☁️ Vercel (Recommended)</h3>
-      <p>One-click deployment with the Vercel platform:</p>
-      <a href="https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fsantoshray02%2Fschoolfinai">
-        <img src="https://vercel.com/button" alt="Deploy with Vercel" />
-      </a>
-    </td>
-    <td width="50%">
-      <h3>🖥️ Self-hosted</h3>
-      <p>Deploy on your own server:</p>
-      <pre>npm run build
-npm start</pre>
-      <p>Or use Docker:</p>
-      <pre>docker-compose up -d</pre>
-    </td>
-  </tr>
-</table>
+SchoolFinAI can be deployed in various ways:
+
+### Using the Management Script
+
+The included `manage.sh` script provides a simple way to manage your application:
+
+```bash
+# Setup the application
+./manage.sh setup
+
+# Start in production mode
+./manage.sh start
+
+# Check application status
+./manage.sh status
+
+# View logs
+./manage.sh logs follow
+
+# Stop the application
+./manage.sh stop
+```
+
+### Vercel (Recommended)
+
+```bash
+vercel
+```
+
+### Docker
+
+```bash
+docker build -t schoolfinai .
+docker run -p 3000:3000 schoolfinai
+```
+
+### Self-hosted
+
+```bash
+npm run build
+npm start
+```
 
 ## 👥 Contributing
 

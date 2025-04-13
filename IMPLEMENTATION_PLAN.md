@@ -112,10 +112,11 @@ Total estimated timeline: **12 weeks**
 
 #### Week 12: Documentation and Deployment
 - [ ] Create user documentation and help guides
-- [ ] Write technical documentation for developers
-- [ ] Prepare deployment scripts and configurations
-- [ ] Set up CI/CD pipeline
+- [ ] Prepare system administration documentation
+- [ ] Set up CI/CD pipeline for deployment
+- [ ] Create application management script for easy deployment and maintenance
 - [ ] Deploy to production environment
+- [ ] Perform final testing in production
 - [ ] Conduct post-deployment testing
 
 ## Development Approach
@@ -175,6 +176,7 @@ Total estimated timeline: **12 weeks**
 - Use a managed PostgreSQL database
 - Set up monitoring and error tracking
 - Configure automated backups
+- Utilize management script for self-hosted deployments
 
 ## Post-Launch Activities
 
