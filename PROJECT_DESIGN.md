@@ -12,6 +12,7 @@ SchoolFinAI follows a modern web application architecture enhanced with AI capab
 - **Form Handling**: React Hook Form with Zod validation
 - **Data Visualization**: Recharts and D3.js for AI-driven analytics
 - **AI Interaction**: Custom React components for natural language interfaces
+- **Configuration**: Environment-based configuration with customizable school branding
 
 ### Backend
 - **API**: Next.js API Routes
@@ -232,7 +233,8 @@ The API follows RESTful principles with the following structure:
 - Online payment gateway integration
 - Mobile app development
 - Advanced analytics and reporting
-- Multi-school/branch support
+- Multi-school/branch support with tenant isolation
+- White-label solution with complete branding customization
 - Academic performance tracking
 - Inventory management
 - Library management integration

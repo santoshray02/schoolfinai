@@ -19,6 +19,7 @@ SchoolFinAI is an open-source, AI-powered platform that revolutionizes how educa
 - 💰 **Smart Fee Management**: Defaulter prediction and personalized payment plans
 - 📱 **Mobile Responsive**: Access from any device, anywhere
 - 🔐 **Secure & Reliable**: Built with security best practices
+- 🎨 **Fully Customizable**: White-label solution with configurable school branding
 
 ## ✨ Key Features
 
@@ -207,7 +208,7 @@ npm install
 
 # Set up environment variables
 cp env.example .env.local
-# Edit .env.local with your credentials
+# Edit .env.local with your credentials and school information
 
 # Run database migrations
 npx prisma migrate dev
@@ -215,6 +216,23 @@ npx prisma migrate dev
 # Start the development server
 npm run dev
 ```
+
+### Customizing Your School
+
+SchoolFinAI is designed to be fully customizable. Configure your school's information in the `.env.local` file:
+
+```
+# School Information
+SCHOOL_NAME="Your School Name"
+SCHOOL_TAGLINE="Your School Motto"
+SCHOOL_ADDRESS="Your School Address"
+SCHOOL_PHONE="Your Contact Number"
+SCHOOL_EMAIL="your@school.edu"
+SCHOOL_WEBSITE="https://yourschool.edu"
+SCHOOL_LOGO_URL="/images/your-logo.png"
+```
+
+You can also update these settings through the admin interface at `/settings/school` after logging in.
 
 Open [http://localhost:3000](http://localhost:3000) to see the application
 
