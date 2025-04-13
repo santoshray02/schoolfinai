@@ -1,0 +1,191 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String
+  role          UserRole  @default(STAFF)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  staff         Staff?
+}
+
+enum UserRole {
+  ADMIN
+  STAFF
+  ACCOUNTANT
+}
+
+// Student model
+model Student {
+  id            String    @id @default(cuid())
+  studentId     String    @unique
+  firstName     String
+  lastName      String
+  dateOfBirth   DateTime?
+  gender        String?
+  address       String?
+  contactNumber String?
+  email         String?
+  parentName    String?
+  parentContact String?
+  class         String?
+  section       String?
+  admissionDate DateTime  @default(now())
+  status        String    @default("Active") // Active, Inactive, Graduated, etc.
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  feePayments   FeePayment[]
+}
+
+// Fee Category model
+model FeeCategory {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  amount      Float
+  frequency   String    // Monthly, Quarterly, Annually, One-time
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  feePayments FeePayment[]
+}
+
+// Fee Payment model
+model FeePayment {
+  id            String      @id @default(cuid())
+  studentId     String
+  feeCategoryId String
+  amount        Float
+  dueDate       DateTime
+  paymentDate   DateTime?
+  paymentMethod String?     // Cash, Bank Transfer, Online Payment
+  transactionId String?
+  status        PaymentStatus @default(PENDING)
+  remarks       String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // Relations
+  student       Student     @relation(fields: [studentId], references: [id])
+  feeCategory   FeeCategory @relation(fields: [feeCategoryId], references: [id])
+  smsNotifications SmsNotification[]
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIAL
+  PAID
+  OVERDUE
+  WAIVED
+}
+
+// Staff model
+model Staff {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  staffId       String    @unique
+  firstName     String
+  lastName      String
+  position      String
+  department    String?
+  contactNumber String?
+  joinDate      DateTime  @default(now())
+  status        String    @default("Active") // Active, Inactive, On Leave
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  user          User      @relation(fields: [userId], references: [id])
+  salaries      Salary[]
+}
+
+// Salary model
+model Salary {
+  id            String    @id @default(cuid())
+  staffId       String
+  amount        Float
+  month         DateTime
+  paymentDate   DateTime?
+  paymentMethod String?
+  transactionId String?
+  status        PaymentStatus @default(PENDING)
+  remarks       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  staff         Staff     @relation(fields: [staffId], references: [id])
+}
+
+// Expense Category model
+model ExpenseCategory {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  expenses    Expense[]
+}
+
+// Expense model
+model Expense {
+  id                String          @id @default(cuid())
+  expenseCategoryId String
+  amount            Float
+  date              DateTime
+  paymentMethod     String?
+  transactionId     String?
+  description       String?
+  receipt           String?         // URL or file path to receipt
+  approvedBy        String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  
+  // Relations
+  expenseCategory   ExpenseCategory @relation(fields: [expenseCategoryId], references: [id])
+}
+
+// SMS Notification model
+model SmsNotification {
+  id            String    @id @default(cuid())
+  feePaymentId  String?
+  recipientName String
+  phoneNumber   String
+  message       String
+  status        String    // Sent, Failed, Pending
+  sentAt        DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  feePayment    FeePayment? @relation(fields: [feePaymentId], references: [id])
+}
+
+// Academic Year model for reporting
+model AcademicYear {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  startDate   DateTime
+  endDate     DateTime
+  isCurrent   Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
